@@ -1,0 +1,38 @@
+# -*- coding: utf-8 -*-
+__author__ = 'Artur Gavkaliuk'
+
+alphabet = [
+    {"char": u"а", "points" : 1},
+    {"char": u"б", "points" : 1},
+    {"char": u"в", "points" : 1},
+    {"char": u"г", "points" : 1},
+    {"char": u"ґ", "points" :  1},
+    {"char": u"д", "points" :  1},
+    {"char": u"е", "points" :  1},
+    {"char": u"є", "points" :  1},
+    {"char": u"ж", "points" :  1},
+    {"char": u"з", "points" :  1},
+    {"char": u"и", "points" :  1},
+    {"char": u"і", "points" :  1},
+    {"char": u"ї", "points" :  1},
+    {"char": u"й", "points" :  1},
+    {"char": u"к", "points" :  1},
+    {"char": u"л", "points" :  1},
+    {"char": u"м", "points" :  1},
+    {"char": u"н", "points" :  1},
+    {"char": u"о", "points" :  1},
+    {"char": u"п", "points" :  1},
+    {"char": u"р", "points" :  1},
+    {"char": u"с", "points" :  1},
+    {"char": u"т", "points" :  1},
+    {"char": u"у", "points" :  1},
+    {"char": u"ф", "points" :  1},
+    {"char": u"х", "points" :  1},
+    {"char": u"ц", "points" :  1},
+    {"char": u"ч", "points" :  1},
+    {"char": u"ш", "points" :  1},
+    {"char": u"щ", "points" :  1},
+    {"char": u"ь", "points" :  1},
+    {"char": u"ю", "points" :  1},
+    {"char": u"я", "points" :  1}
+]
