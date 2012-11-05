@@ -1,3 +1,6 @@
 body{
     padding-top: 20px;
 }
+.player-word .icon-remove, .remove-player{
+    cursor: pointer;
+}

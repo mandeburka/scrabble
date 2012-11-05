@@ -33,13 +33,15 @@ $(function () {
         },
         computePoints: function (word) {
             var result = 0;
-
+            //compute word multiplier
             var regexp_mult_word = /^\d+/;
             regexp_mult_word.compile(regexp_mult_word);
             var mult_word = word.match(regexp_mult_word);
             var multiplier = mult_word != null && mult_word.length > 0 ? parseInt(mult_word[0]) : 1;
+            //remove it from word
             word = word.replace(regexp_mult_word, '');
 
+            //compute points for chars with multipliers
             var regexp_mult_char = new RegExp("[а-я][0-9]", "g");
             regexp_mult_char.compile(regexp_mult_char);
 
@@ -47,12 +49,14 @@ $(function () {
             result += _.reduce(mult_chars, function(zero, match){
                 return zero + chars.getPoints(match[0]) * parseInt(match[1]);
             }, 0);
-
+            //remove all chars with multipliers from word
             word = word.replace(regexp_mult_char, '');
 
+            //compute points for the rest chars
             result += _.reduce(word, function(zero, c){
                 return chars.getPoints(c) + zero
             }, 0);
+            //return multiplied points
             return result * multiplier;
         }
     });
@@ -87,7 +91,9 @@ $(function () {
         template: _.template($('#player-template').html()),
 
         events: {
-            "submit .add-word"   : "addWord"
+            "submit .add-word"   : "addWord",
+            "click .player-word .icon-remove": "removeWord",
+            "click .remove-player": "removePlayer"
         },
 
         initialize: function(){
@@ -105,17 +111,38 @@ $(function () {
             e.preventDefault();
             var wordInput = this.$(".add-word input");
             var word = wordInput.val();
+            if (!word) return;
             wordInput.val('');
             var words = this.model.get("words");
             var wordObj = new Word({"word": word});
             words.push(wordObj);
             this.model.set("words", words);
-            this.model.calculatePoints();
 
             if (wordObj.get("points") == 0){
                 //zero points word doesn't change model so hard render needed
                 this.render();
+            } else
+                this.model.calculatePoints();
+        },
+        removeWord: function(e){
+            var word_id = $(e.target).attr('id');
+            var words = this.model.get("words");
+            for (var i in words){
+                var word = words[i];
+                if (word.cid == word_id){
+                    delete words[i];
+                    this.model.set("words", words);
+                    if (word.get("points") == 0)
+                        this.render();
+                    else
+                        this.model.calculatePoints();
+                    word.destroy();
+                    break;
+                }
             }
+        },
+        removePlayer: function(){
+            this.model.destroy();
         }
     });
 
