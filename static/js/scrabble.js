@@ -6,6 +6,7 @@ $(function () {
             points: 0
         }
     });
+
     var CharacterCollection  = Backbone.Collection.extend({
         model: Character,
         url: '/chars',
@@ -42,7 +43,7 @@ $(function () {
             word = word.replace(regexp_mult_word, '');
 
             //compute points for chars with multipliers
-            var regexp_mult_char = new RegExp("[а-я][0-9]", "g");
+            var regexp_mult_char = new RegExp("[а-ї][0-9]", "g");
             regexp_mult_char.compile(regexp_mult_char);
 
             var mult_chars = word.match(regexp_mult_char);

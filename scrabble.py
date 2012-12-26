@@ -39,11 +39,6 @@ app.debug = True
 def index():
     return render_template("index.jinja2")
 
-@app.route('/new')
-def new_game():
-
-    return render_template("new_game.jinja2")
-
 @app.route('/', methods=['POST'])
 def players():
     return ''

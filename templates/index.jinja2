@@ -52,7 +52,7 @@
         </tr>
         </thead>
         <tbody>
-            <% _.each(words.reverse(), function(item){ %>
+            <% _.each(words.slice(0).reverse(), function(item){ %>
             <tr class="player-word">
                 <td class="word"><%= item.get("word") %></td>
                 <td class="points"><%= item.get("points") %></td>
